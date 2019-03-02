@@ -19,6 +19,7 @@ const MobileSidebar = ({
       animation="overlay"
       icon="labeled"
       inverted
+      color="red"
       vertical
       visible={visible}
     >
@@ -37,7 +38,7 @@ const MobileSidebar = ({
       onClick={onPusherClick}
       style={{ minHeight: "100vh" }}
     >
-      <Menu fixed="top" inverted>
+      <Menu fixed="top" inverted color="red">
         {isLoggedin ? (
           <Menu.Item onClick={onToggle}>
             <Icon name="sidebar" />
@@ -45,7 +46,7 @@ const MobileSidebar = ({
         ) : null}
         <Menu.Item as={Link} to="/" header>
           <img src={logo} alt="logo" />
-          BUGS MONEY
+          Tickets app
         </Menu.Item>
         <Menu.Menu position="right">
           {isLoggedin

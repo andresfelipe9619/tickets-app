@@ -33,32 +33,27 @@ const Auth = {
   register: user => serverRequests.post("/user", user)
 };
 
-const Account = {
-  getAll: () => serverRequests.get("/account"),
-  get: account => serverRequests.get(`/account/${account}`)
+const Event = {
+  getAll: () => serverRequests.get(`/event`),
+  delete: id => serverRequests.del(`/event/${id}`),
+  get: id => serverRequests.get(`/event/${id}`),
+  update: event =>
+    serverRequests.put(`/event/${event.id}`, event),
+  create: event => serverRequests.post("/event", event)
 };
 
-const Transaction = {
-  getAll: () => serverRequests.get(`/transaction`),
-  delete: id => serverRequests.del(`/transaction/${id}`),
-  get: id => serverRequests.get(`/transaction/${id}`),
-  update: transaction =>
-    serverRequests.put(`/transaction/${transaction.id}`, transaction),
-  create: transaction => serverRequests.post("/transaction", transaction)
-};
-
-const Budget = {
-  getAll: () => serverRequests.get(`/budget`),
-  delete: id => serverRequests.del(`/budget/${id}`),
-  get: id => serverRequests.get(`/budget/${id}`),
-  update: budget => serverRequests.put(`/budget/${budget._id}`, budget),
-  create: budget => serverRequests.post("/budget", budget)
+const Ticket = {
+  getAll: () => serverRequests.get(`/ticket`),
+  delete: id => serverRequests.del(`/ticket/${id}`),
+  get: id => serverRequests.get(`/ticket/${id}`),
+  update: ticket => serverRequests.put(`/ticket/${ticket._id}`, ticket),
+  create: ticket => serverRequests.post("/ticket", ticket)
 };
 
 const User = {
   getAll: () => serverRequests.get(`/user`),
   get: id => serverRequests.get(`/user/${id}`),
-  profile: () => serverRequests.get("/profile"),
+  profile: () => serverRequests.get("/user/profile"),
   delete: id => serverRequests.del(`/user/${id}`),
   update: user => serverRequests.put("/user", user)
 };
@@ -66,9 +61,8 @@ const User = {
 export default {
   Auth,
   User,
-  Budget,
-  Account,
-  Transaction,
+  Ticket,
+  Event,
   setToken: _token => {
     token = _token;
   }

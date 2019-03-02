@@ -10,7 +10,8 @@ import {
   LoadableHome,
   LoadableLogin,
   LoadableRegister,
-  LoadableProfile
+  LoadableProfile,
+  LoadableEvent
 } from "./features";
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
         <Navbar>
           <Switch>
             <Route exact path="/" component={LoadableHome} />
+            <PrivateRoute path="/events" component={LoadableEvent} />
             <PrivateRoute path="/tickets" component={LoadableTicket} />
             <Route exact path="/register" component={LoadableRegister} />
             <Route exact path="/login" component={LoadableLogin} />

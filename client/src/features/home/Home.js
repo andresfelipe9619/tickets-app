@@ -1,11 +1,7 @@
 import React, { Component } from "react";
-import { Container, Header, Divider, Icon, Image } from "semantic-ui-react";
+import { Header, Divider } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { homePageLoaded } from "./redux/actions";
-import budget_ico from "../../assets/images/king_budget.jpg";
-import no_money from "../../assets/images/no_money.jpg";
-// import mongoDB from "../../assets/images/MongoDB.jpg";
-import mongoDB from "../../assets/images/mongodb.svg";
 import "./styles/home.css";
 import WOW from "wowjs";
 class Home extends Component {
@@ -28,11 +24,11 @@ class Home extends Component {
             textAlign={"center"}
             style={{ fontSize: "80px", color: "white", paddingTop: "1em" }}
           >
-            <a className="manage-title-header manage-highlight">
+            <span className="manage-title-header manage-highlight">
               Welcome to
               <br />
-              Bugs Money
-            </a>
+              Ticket app
+            </span>
             <Header as={"h1"} style={{ color: "#4cc0ff" }}>
               Your best option to manage personal finances.
             </Header>
@@ -55,119 +51,6 @@ class Home extends Component {
             </p>
             <br />
           </div>
-        </div>
-        <div className="home-content wow rollIn" data-wow-delay="0.3s">
-          <Container fluid className="wow zoomIn" data-wow-delay="0.4s">
-            <a className="manage-title manage-highlight">
-              Manage your money like a PRO!!
-            </a>
-          </Container>
-        </div>
-        <div
-          className="home-sections-container"
-          style={{ paddingBottom: "10px" }}
-        >
-          <br />
-          <div
-            className="home-section wow slideInLeft"
-            data-wow-delay="0.1s"
-            data-wow-iteration="1"
-            style={{
-              visibility: "visible",
-              animationDelay: "0.1s",
-              animationIterationCount: "1"
-            }}
-          >
-            <div className="home-title-items black-text">
-              <h2>Budgets on another Level</h2>
-              <br />
-              <p style={{ paddingRight: "1em" }}>
-                With Bugs Money you can easily manage your monthly budget, add
-                all your accounts, keep all you transactions in one place
-              </p>
-              <br />
-            </div>
-            <div className="gifs">
-              <span>
-                <img src={budget_ico} alt="bugs-pro" />
-              </span>
-            </div>
-          </div>
-          <br />
-          <br />
-          <div
-            className="home-section wow slideInRight"
-            data-wow-delay="0.3s"
-            data-wow-iteration="1"
-            style={{
-              visibility: "visible",
-              animationDelay: "0.1s",
-              animationIterationCount: "1"
-            }}
-          >
-            <div className="home-title-items black-text">
-              <h2>Never Run Out Of Money Again</h2>
-              <br />
-              <p>
-                Get instant reports on how have you spent your money, how much
-                is available and how much do you owe according to your budget
-                settings.
-              </p>
-              <br />
-            </div>
-            <div className="gifs">
-              <span>
-                <img src={no_money} alt="bugs-poor" />
-              </span>
-            </div>
-          </div>
-        </div>
-        <br />
-        <div className="home-content2 wow slideInRight" data-wow-delay="0.3s">
-          <Container fluid className="wow zoomIn" data-wow-delay="0.7s">
-            <a className="manage-title manage-highlight">
-              Add as many accounts as you want!
-            </a>
-          </Container>
-        </div>
-        <br />
-        <div className="home-content3 wow slideInLeft" data-wow-delay="0.3s">
-          <Container fluid className="wow zoomIn" data-wow-delay="0.7s">
-            <a className="manage-title manage-highlight">
-              Keep track of All your Transactions!
-            </a>
-          </Container>
-        </div>
-        <div className="home-content4">
-          <Container
-            fluid
-            className="wow zoomIn"
-            data-wow-delay="0.3s"
-            textAlign="center"
-          >
-            <a
-              className="manage-title-tech manage-highlight"
-              style={{ fontSize: "80px" }}
-            >
-              Tech Used to make this App
-            </a>
-            <Container className="Tech-Icons wow flipInX" data-wow-delay="0.5s">
-              <br />
-              <br />
-              <Icon.Group size="huge">
-                <Icon name="node" />
-              </Icon.Group>
-              <br />
-              <br />
-              <Icon.Group size="huge">
-                <Icon name="react" />
-              </Icon.Group>
-              <br />
-              <Icon.Group size="huge">
-                <Image src={mongoDB} />
-              </Icon.Group>
-            </Container>
-          </Container>
         </div>
       </div>
     );

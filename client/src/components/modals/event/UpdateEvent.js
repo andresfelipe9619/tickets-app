@@ -2,9 +2,9 @@ import React from "react";
 import { Header, Modal } from "semantic-ui-react";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import BudgetForm from "./BudgetForm";
+import BudgetForm from "./EventForm";
 
-const CreateBudgetModal = ({ open, closeModal, handleOnConfirm }) => (
+const UpdateBudgetModal = ({ open, closeModal, handleOnConfirm, budget }) => (
   <Modal
     closeIcon
     open={open}
@@ -13,16 +13,17 @@ const CreateBudgetModal = ({ open, closeModal, handleOnConfirm }) => (
     onClose={closeModal}
   >
     <Header>
-      {/* <FontAwesomeIcon size="2x" icon="piggy-bank" /> Create your Budget */}
+      {/* <FontAwesomeIcon size="2x" icon="piggy-bank" /> Actualiza tú Presupuesto */}
     </Header>
     <Modal.Content>
       <BudgetForm
-        submitText={"Crear presupuesto"}
-        handleOnConfirm={handleOnConfirm}
+        budget={budget}
+        submitText={"Actualizar presuspuesto"}
         handleOnCancel={closeModal}
+        handleOnConfirm={handleOnConfirm}
       />
     </Modal.Content>
   </Modal>
 );
 
-export default CreateBudgetModal;
+export default UpdateBudgetModal;

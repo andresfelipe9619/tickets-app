@@ -2,27 +2,27 @@ import React, { Component } from "react";
 import { Grid, Header, Container } from "semantic-ui-react";
 import DataTable from "../../components/tables/DataTable";
 // import { toast } from "react-semantic-toasts";
-// import BudgetRow from "./BudgetRow";
+// import EventRow from "./EventRow";
 import { connect } from "react-redux";
-import CreateBudgetModal from "../../components/modals/budget/CreateBudget";
-import UpdateBudgetModal from "../../components/modals/budget/UpdateBudget";
+import CreateEventModal from "../../components/modals/event/CreateEvent";
+import UpdateEventModal from "../../components/modals/event/UpdateEvent";
 import API from "../../services/api";
-class Budget extends Component {
+class Event extends Component {
     state = {
         income: 0,
         expense: 0,
-        budgeted: 0,
-        budgets: [],
+        evented: 0,
+        events: [],
         isModalOpen: {
             create: false,
             update: false
         },
-        currentBudget: null
+        currentEvent: null
     };
 
     async componentDidMount() {
         const { alert } = this.props;
-        this.getBudgets();
+        this.getEvents();
         if (alert && alert.message) {
             // toast({
             //     type: alert.typresolve,
@@ -34,43 +34,43 @@ class Budget extends Component {
         }
     }
 
-    async getBudgets() {
-        let res = await API.Budget.getAll();
+    async getEvents() {
+        let res = await API.Event.getAll();
         if (res.ok) {
-            let { budgets } = res;
-            this.setState({ budgets });
+            let { events } = res;
+            this.setState({ events });
         }
     }
 
-    createBudget = async budget => {
-        let res = await API.Budget.create(budget);
+    createEvent = async event => {
+        let res = await API.Event.create(event);
         if (res.ok) {
-            this.getBudgets();
+            this.getEvents();
         }
     };
 
-    viewBudget = budget => {
-        this.setCurrentBudget(budget);
+    viewEvent = event => {
+        this.setCurrentEvent(event);
         window.scrollTo({ top: 800, behavior: "smooth" });
     };
 
-    updateBudget = async budget => {
-        let res = await API.Budget.update(budget);
+    updateEvent = async event => {
+        let res = await API.Event.update(event);
         if (res.ok) {
-            this.getBudgets();
+            this.getEvents();
         }
     };
 
-    deleteBudget = async budget => {
-        let res = await API.Budget.delete(budget._id);
+    deleteEvent = async event => {
+        let res = await API.Event.delete(event._id);
         if (res.ok) {
-            this.getBudgets();
+            this.getEvents();
         }
     };
 
-    setCurrentBudget = budget => {
-        if (!budget) return;
-        this.setState({ currentBudget: budget });
+    setCurrentEvent = event => {
+        if (!event) return;
+        this.setState({ currentEvent: event });
     };
 
     openModal = modal => () => {
@@ -81,34 +81,34 @@ class Budget extends Component {
         this.setState({ isModalOpen: { [modal]: false } });
     };
 
-    handleOnCreate = budget => {
-        console.log("budget", budget);
-        if (!budget) return;
-        this.createBudget(budget);
+    handleOnCreate = event => {
+        console.log("event", event);
+        if (!event) return;
+        this.createEvent(event);
     };
 
-    handleOnUpdate = budget => e => {
-        console.log("budget", budget);
-        if (!budget) return;
-        this.setCurrentBudget(budget);
+    handleOnUpdate = event => e => {
+        console.log("event", event);
+        if (!event) return;
+        this.setCurrentEvent(event);
         this.openModal("update")();
     };
 
-    handleOnView = budget => e => {
-        console.log("budget", budget);
-        if (!budget) return;
-        this.viewBudget(budget);
+    handleOnView = event => e => {
+        console.log("event", event);
+        if (!event) return;
+        this.viewEvent(event);
     };
 
-    handleOnDelete = budget => e => {
-        console.log("budget", budget);
-        if (!budget) return;
-        this.deleteBudget(budget);
+    handleOnDelete = event => e => {
+        console.log("event", event);
+        if (!event) return;
+        this.deleteEvent(event);
     };
 
     render() {
-        const { budgets, isModalOpen, currentBudget } = this.state;
-        if (!budgets) return null;
+        const { events, isModalOpen, currentEvent } = this.state;
+        if (!events) return null;
         const handlers = {
             handleOnView: this.handleOnView,
             handleOnCreate: this.handleOnCreate,
@@ -116,7 +116,7 @@ class Budget extends Component {
             handleOnDelete: this.handleOnDelete
         };
 
-        let { income, expense } = budgets.reduce(
+        let { income, expense } = events.reduce(
             (prev, b) =>
                 b.nature === "income"
                     ? { ...prev, income: prev.income + parseInt(b.limit, 10) }
@@ -133,7 +133,7 @@ class Budget extends Component {
                 <Grid divided>
                     <Grid.Row>
                         <Grid.Column width={16}>
-                            {/* <BudgetRow
+                            {/* <EventRow
                                 saved={saved}
                                 income={income}
                                 expense={expense}
@@ -144,8 +144,8 @@ class Budget extends Component {
                     </Grid.Row>
                     <Grid.Row centered style={{ marginTop: "100px" }}>
                         <Grid.Column width={16}>
-                            {budgets && budgets.length > 0 ? (
-                                <DataTable actions handlers={handlers} data={budgets} />
+                            {events && events.length > 0 ? (
+                                <DataTable actions handlers={handlers} data={events} />
                             ) : (
                                     <p>There's nothing budgted yet, try to create something?</p>
                                 )}
@@ -155,32 +155,32 @@ class Budget extends Component {
                         centered
                         style={{
                             marginTop: "100px",
-                            marginBottom: currentBudget ? "0px" : "300px"
+                            marginBottom: currentEvent ? "0px" : "300px"
                         }}
                     >
                         <Grid.Column width={16}>
                             <Header>
-                                {currentBudget && currentBudget.name
-                                    ? `Transacciones en ${currentBudget.name}`
+                                {currentEvent && currentEvent.name
+                                    ? `Transacciones en ${currentEvent.name}`
                                     : `Selecciona un presupuesto`}
                             </Header>
-                            {currentBudget && budgets.length > 0 ? (
-                                <DataTable actions handlers={handlers} data={budgets} />
+                            {currentEvent && events.length > 0 ? (
+                                <DataTable actions handlers={handlers} data={events} />
                             ) : (
                                     <p>There are no transactions</p>
                                 )}
                         </Grid.Column>
                     </Grid.Row>
-                    <CreateBudgetModal
+                    <CreateEventModal
                         open={isModalOpen.create}
                         closeModal={this.closeModal("create")}
                         handleOnConfirm={handlers.handleOnCreate}
                     />
-                    <UpdateBudgetModal
-                        budget={currentBudget || null}
+                    <UpdateEventModal
+                        event={currentEvent || null}
                         open={isModalOpen.update}
                         closeModal={this.closeModal("update")}
-                        handleOnConfirm={this.updateBudget}
+                        handleOnConfirm={this.updateEvent}
                     />
                 </Grid>
             </Container>
@@ -193,4 +193,4 @@ function mapStateToProps(state) {
         user: state.authService.loginSuccess
     };
 }
-export default connect(mapStateToProps)(Budget);
+export default connect(mapStateToProps)(Event);

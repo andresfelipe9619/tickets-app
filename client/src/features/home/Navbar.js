@@ -31,21 +31,21 @@ const leftItems = [
   },
   {
     as: Link,
-    to: "/dashboard/budgets",
-    content: "Budgets",
-    key: "budgets",
-    name: "money bill alternate outline"
+    to: "/events",
+    content: "Events",
+    key: "events",
+    name: "compass"
   },
   {
     as: Link,
-    to: "/dashboard/accounts",
-    content: "Accounts",
-    key: "accounts",
-    name: "credit card outline"
+    to: "/tickets",
+    content: "Tickets",
+    key: "tickets",
+    name: "ticket"
   },
   {
     as: Link,
-    to: "/dashboard/reports",
+    to: "/reports",
     content: "Reports",
     key: "reports",
     name: "line graph"
