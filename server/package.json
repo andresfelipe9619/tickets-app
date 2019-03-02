@@ -1,0 +1,32 @@
+{
+  "name": "tickets-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "errorhandler": "^1.5.0",
+    "express": "^4.16.4",
+    "fakegoose": "0.0.3",
+    "google-auth-library": "^3.1.0",
+    "jsonwebtoken": "^8.5.0",
+    "mongoose": "^5.4.16",
+    "mongoose-unique-validator": "^2.0.2",
+    "morgan": "^1.9.1",
+    "mysql2": "^1.6.5",
+    "node-pre-gyp": "^0.12.0",
+    "python": "0.0.4",
+    "sequelize": "^4.42.1",
+    "underscore": "^1.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
