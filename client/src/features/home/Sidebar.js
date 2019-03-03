@@ -45,7 +45,7 @@ const MobileSidebar = ({
           </Menu.Item>
         ) : null}
         <Menu.Item as={Link} to="/" header>
-          <img src={logo} alt="logo" />
+          {/* <img src={logo} alt="logo" /> */}
           Tickets app
         </Menu.Item>
         <Menu.Menu position="right">

@@ -11,8 +11,13 @@ export const LoadableProfile = loadable({
   loading: Loading
 });
 
-export const LoadableTicket = loadable({
-  loader: () => import("./ticket/Ticket"),
+export const LoadableMyTickets = loadable({
+  loader: () => import("./tickets"),
+  loading: Loading
+});
+
+export const LoadableMyEvents = loadable({
+  loader: () => import("./event/MyEvents"),
   loading: Loading
 });
 
