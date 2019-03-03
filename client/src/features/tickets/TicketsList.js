@@ -2,8 +2,8 @@ import React, { PureComponent } from "react";
 import { Card } from "semantic-ui-react";
 
 const TicketItem = ({ ticket }) => {
-  const { event } = ticket;
-  const { id, logo, name, start, end, created } = event;
+  const { id, event } = ticket;
+  const { logo, name, start, end, created } = event;
   const img =
     (logo && logo.url) ||
     "https://react.semantic-ui.com/images/wireframe/image.png";
