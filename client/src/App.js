@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-// import { Container } from "semantic-ui-react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { SemanticToastContainer } from "react-semantic-toasts";
 import Navbar from "./features/home/Navbar.js";
 import { connect } from "react-redux";
 import { PageNotFound, PrivateRoute, ErrorBoundary } from "./features/common";
 import {
-  LoadableTicket,
+  LoadableMyTickets,
+  LoadableMyEvents,
   LoadableHome,
   LoadableLogin,
   LoadableRegister,
@@ -21,8 +21,9 @@ class App extends Component {
         <Navbar>
           <Switch>
             <Route exact path="/" component={LoadableHome} />
-            <PrivateRoute path="/events" component={LoadableEvent} />
-            <PrivateRoute path="/tickets" component={LoadableTicket} />
+            <Route path="/events" component={LoadableEvent} />
+            <Route path="/mytickets" component={LoadableMyTickets} />
+            <Route path="/myevents" component={LoadableMyEvents} />
             <Route exact path="/register" component={LoadableRegister} />
             <Route exact path="/login" component={LoadableLogin} />
             <PrivateRoute exact path="/profile" component={LoadableProfile} />

@@ -1,10 +1,9 @@
 import React from "react";
-import { Header, Modal } from "semantic-ui-react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Header, Modal, Icon } from "semantic-ui-react";
 
-import BudgetForm from "./TicketForm";
+import TicketForm from "./TicketForm";
 
-const UpdateBudgetModal = ({ open, closeModal, handleOnConfirm, budget }) => (
+const UpdateBudgetModal = ({ open, closeModal, handleOnConfirm, ticket }) => (
   <Modal
     closeIcon
     open={open}
@@ -13,12 +12,12 @@ const UpdateBudgetModal = ({ open, closeModal, handleOnConfirm, budget }) => (
     onClose={closeModal}
   >
     <Header>
-      {/* <FontAwesomeIcon size="2x" icon="piggy-bank" /> Actualiza tú Presupuesto */}
+      <Icon size="2x" name="ticket" /> Update your ticket
     </Header>
     <Modal.Content>
-      <BudgetForm
-        budget={budget}
-        submitText={"Actualizar presuspuesto"}
+      <TicketForm
+        ticket={ticket}
+        submitText={"Update"}
         handleOnCancel={closeModal}
         handleOnConfirm={handleOnConfirm}
       />

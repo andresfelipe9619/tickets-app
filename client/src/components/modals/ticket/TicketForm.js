@@ -11,7 +11,7 @@ const MyInnerForm = props => {
     handleChange,
     handleSubmit,
     handleOnCancel,
-    values: { name, limit, startDate, endDate }
+    values: { first_name, limit, last_name, email }
   } = props;
   return (
     <Grid
@@ -34,15 +34,36 @@ const MyInnerForm = props => {
             <Form size="large" onSubmit={handleSubmit} loading={isSubmitting}>
               <Form.Group widths="equal">
                 <Form.Input
-                  label="budget name"
+                  label="First Name"
                   labelPosition="left"
-                  value={name}
+                  value={first_name}
                   fluid
-                  icon="money"
                   type="text"
-                  name="name"
+                  name="first_name"
                   iconPosition="left"
-                  placeholder="name presupuesto..."
+                  placeholder="your name..."
+                  onChange={handleChange}
+                />
+                <Form.Input
+                  label="Last Name"
+                  labelPosition="left"
+                  type="text"
+                  fluid
+                  iconPosition="left"
+                  name="last_name"
+                  value={last_name}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group widths="equal">
+                <Form.Input
+                  label="Email"
+                  labelPosition="left"
+                  fluid
+                  iconPosition="left"
+                  name="email"
+                  type="email"
+                  value={email}
                   onChange={handleChange}
                 />
                 <Form.Input
@@ -50,35 +71,10 @@ const MyInnerForm = props => {
                   labelPosition="left"
                   type="text"
                   fluid
-                  icon="money"
                   iconPosition="left"
                   name="limit"
                   value={limit}
                   placeholder="limit..."
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group widths="equal">
-                <Form.Input
-                  label="Fecha inicio"
-                  labelPosition="left"
-                  type="date"
-                  fluid
-                  icon="calendar"
-                  iconPosition="left"
-                  name="startDate"
-                  value={startDate}
-                  onChange={handleChange}
-                />
-                <Form.Input
-                  label="Fecha Final"
-                  labelPosition="left"
-                  type="date"
-                  fluid
-                  icon="calendar"
-                  iconPosition="left"
-                  name="endDate"
-                  value={endDate}
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -97,32 +93,32 @@ const MyInnerForm = props => {
   );
 };
 
-const BudgetForm = withSemanticUIFormik({
-  mapPropsToValues: ({ budget }) => ({
-    name: (budget && budget.name) || "weed",
-    startDate: (budget && budget.startDate) || "2019-01-01",
-    endDate: (budget && budget.endDate) || "2020-01-01",
-    limit: (budget && budget.limit) || 0
+const TicketForm = withSemanticUIFormik({
+  mapPropsToValues: ({ ticket }) => ({
+    first_name: (ticket && ticket.first_name) || "weed",
+    last_name: (ticket && ticket.last_name) || "2019-01-01",
+    email: (ticket && ticket.email) || "2020-01-01",
+    limit: (ticket && ticket.limit) || 0
   }),
   validationSchema: Yup.object().shape({
-    name: Yup.string().required("name is requerid!"),
+    first_name: Yup.string().required("first_name is requerid!"),
     limit: Yup.number().required("limit is required!"),
-    endDate: Yup.date().required("End date is required!"),
-    startDate: Yup.date().required("Start date is required!")
+    email: Yup.date().required("End date is required!"),
+    last_name: Yup.date().required("Start date is required!")
   }),
   handleSubmit: (values, { setSubmitting, props }) => {
     setTimeout(() => {
       console.log("values", values);
-      if (!props.budget) {
+      if (!props.ticket) {
         props.handleOnConfirm(values);
       } else {
-        props.handleOnConfirm({ ...values, _id: props.budget._id });
+        props.handleOnConfirm({ ...values, _id: props.ticket._id });
       }
       props.handleOnCancel();
       setSubmitting(false);
     }, 1000);
   },
-  displayName: "BudgetForm"
+  displayName: "TicketForm"
 })(MyInnerForm);
 
-export default BudgetForm;
+export default TicketForm;
